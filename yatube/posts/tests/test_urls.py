@@ -13,13 +13,13 @@ class URLTests(TestCase):
         super().setUpClass()
         cls.user = User.objects.create_user(username='SnoopDog')
         Group.objects.create(
-            title = 'Тестовое название',
-            slug = 'test-slug',
-            description = 'Тестовое описание'
+            title='Тестовое название',
+            slug='test-slug',
+            description='Тестовое описание'
         )
         Post.objects.create(
-            text = 'Тестовый текст',
-            author = cls.user
+            text='Тестовый текст',
+            author=cls.user
         )
 
     def setUp(self):

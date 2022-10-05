@@ -45,9 +45,12 @@ class VIEWSTests(TestCase):
     def test_pages_uses_correct_template(self):
         templates_pages_names = {
             'posts/index.html': reverse('posts:index'),
-            'posts/group_list.html': (reverse('posts:group_list', kwargs={'slug': 'test-slug'})),
-            'posts/profile.html': (reverse('posts:profile', kwargs={'username': 'SnoopDog2'})),
-            'posts/post_detail.html': (reverse('posts:post_detail', kwargs={'post_id': self.post.pk})),
+            'posts/group_list.html': (reverse('posts:group_list',
+                                        kwargs={'slug': 'test-slug'})),
+            'posts/profile.html': (reverse('posts:profile',
+                                     kwargs={'username': 'SnoopDog2'})),
+            'posts/post_detail.html': (reverse('posts:post_detail',
+                                         kwargs={'post_id': self.post.pk})),
             'posts/create_post.html': (reverse('posts:post_edit', kwargs={'post_id': self.post.pk})),
             'posts/create_post.html': reverse('posts:post_create')
         }

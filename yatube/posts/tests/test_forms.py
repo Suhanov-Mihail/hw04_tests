@@ -16,9 +16,9 @@ class PostCreateForm(TestCase):
     def setUpClass(cls):
         super().setUpClass()
         cls.group = Group.objects.create(
-            title = 'Тестовый титул',
-            slug = 'test_slag',
-            description = 'Тестовое описание'
+            title='Тестовый титул',
+            slug='test_slag',
+            description='Тестовое описание'
         )
         cls.form = PostForm()
 
