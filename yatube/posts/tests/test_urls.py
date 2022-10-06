@@ -48,7 +48,7 @@ class URLTests(TestCase):
 
     def test_author_only(self):
         """Страницы, доступные только автору."""
-        response = self.authorized_client.get('/posts/1/edit')
+        response = self.authorized_client.get('/posts/1/edit/')
         self.assertEqual(response.status_code, 200)
 
     def test_correct_template(self):
@@ -58,7 +58,7 @@ class URLTests(TestCase):
             '/group/test-slug/': 'posts/group_list.html',
             '/posts/1/': 'posts/post_detail.html',
             '/profile/SnoopDog/': 'posts/profile.html',
-            '/posts/1/edit': 'posts/create_post.html',
+            '/posts/1/edit/': 'posts/create_post.html',
             '/create/': 'posts/create_post.html',
         }
         for address, template in templates_url_names.items():
