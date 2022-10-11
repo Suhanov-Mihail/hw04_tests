@@ -40,7 +40,7 @@ class URLTests(TestCase):
         for address in url_names:
             with self.subTest(address=address):
                 response = self.guest_client.get(address)
-                self.assertEqual(response.status_code, 200)
+                self.assertEqual(response.status_code, HTTPStatus.OK)
 
     def test_author_only(self):
         """Страницы, доступные только автору."""
