@@ -184,10 +184,10 @@ class PaginatorViewsTest(TestCase):
             response = self.client.get(tested_url)
             self.assertEqual(len(response.context.get('page_obj'
                                                       ).object_list),
-                                                     TEN_POST)
+                             TEN_POST)
 
         for tested_url in list_urls:
             response = self.client.get(tested_url, {'page': 2})
             self.assertEqual(len(response.context.get('page_obj'
                                                       ).object_list),
-                                                     THREE_POST)
+                             THREE_POST)
