@@ -45,7 +45,7 @@ class URLTests(TestCase):
     def test_author_only(self):
         """Страницы, доступные только автору."""
         response = self.authorized_client.get('/create/')
-        response = self.authorized_client.get('/posts/1/edit')
+        response = self.authorized_client.get('/posts/1/edit/')
         self.assertEqual(response.status_code, HTTPStatus.OK)
 
     def test_correct_template(self):
