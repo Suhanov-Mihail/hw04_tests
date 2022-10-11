@@ -1,4 +1,5 @@
 from django.contrib.auth import get_user_model
+
 from django.test import TestCase
 
 from ..models import Group, Post
@@ -22,7 +23,6 @@ class PostModelTest(TestCase):
             author=cls.user,
             text='Тестовый пост',
         )
-
 
     def test_models_have_correct_object_names(self):
         """Проверяем, что у моделей корректно работает __str__."""

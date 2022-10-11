@@ -5,8 +5,8 @@ from ..models import Post, Group
 
 from http import HTTPStatus
 
-
 User = get_user_model()
+
 
 class URLTests(TestCase):
     @classmethod
@@ -14,13 +14,13 @@ class URLTests(TestCase):
         super().setUpClass()
         cls.user = User.objects.create_user(username='SnoopDog')
         Group.objects.create(
-            title = 'Тестовое название',
-            slug = 'test-slug',
-            description = 'Тестовое описание'
+            title='Тестовое название',
+            slug='test-slug',
+            description='Тестовое описание'
         )
         Post.objects.create(
-            text = 'Тестовый текст',
-            author = cls.user
+            text='Тестовый текст',
+            author=cls.user
         )
 
     def setUp(self):
@@ -28,7 +28,6 @@ class URLTests(TestCase):
         user = URLTests.user
         self.authorized_client = Client()
         self.authorized_client.force_login(user)
-
 
     def test_not_authorized_url(self):
         """Страницы, доступные любому пользователю."""
@@ -41,7 +40,7 @@ class URLTests(TestCase):
         for address in url_names:
             with self.subTest(address=address):
                 response = self.guest_client.get(address)
-                self.assertEqual(response.status_code, HTTPStatus.OK)
+                self.assertEqual(response.status_code, 200)
 
     def test_author_only(self):
         """Страницы, доступные только автору."""
