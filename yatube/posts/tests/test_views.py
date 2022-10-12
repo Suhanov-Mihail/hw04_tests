@@ -4,6 +4,7 @@ from django.urls import reverse
 from django import forms
 
 from .. models import Post, Group
+from posts.forms import PostForm
 
 TEST_OF_POST: int = 13
 TEN_POST: int = 10
@@ -100,10 +101,10 @@ class VIEWSTests(TestCase):
             'text': forms.fields.CharField,
             'group': forms.fields.ChoiceField,
         }
-        for value, expected in form_fields.items():
+        for value in form_fields.items():
             with self.subTest(value=value):
-                form_field = response.context.get('form').fields.get(value)
-                self.assertIsInstance(form_field, expected)
+                self.assertIn('form', response.context)
+                self.assertIsInstance(response.context['form'], PostForm)
 
     def test_edit_correct_context(self):
         """Тест контекста для edit."""
@@ -114,14 +115,14 @@ class VIEWSTests(TestCase):
             'text': forms.fields.CharField,
             'group': forms.fields.ChoiceField,
         }
-        for value, expected in form_fields.items():
+        for value in form_fields.items():
             with self.subTest(value=value):
-                form_field = response.context.get('form').fields.get(value)
-                # Здесь без .fields.get(value) у меня всё ломается
-                # и тест не работает. сам я не допер как эт сделать,
-                # в слаке тоже ничего особо не подсказали.
-                self.assertIsInstance(form_field, expected)
-                self.assertIsInstance(form_field, expected)
+                self.assertIn('form', response.context)
+                self.assertIsInstance(response.context['form'], PostForm)
+                self.assertTrue('is_edit')
+                self.assertIsInstance(response.context['is_edit'], bool)
+                self.assertIn('post', response.context)
+                self.assertEqual(response.context['post'], self.post)
 
     def test_create_post_home_group_list_profile_pages(self):
         """Созданный пост отобразился на главной,

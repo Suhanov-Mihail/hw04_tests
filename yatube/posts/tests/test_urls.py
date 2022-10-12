@@ -45,8 +45,13 @@ class URLTests(TestCase):
     def test_author_only(self):
         """Страницы, доступные только автору."""
         response = self.authorized_client.get('/create/')
-        response = self.authorized_client.get('/posts/1/edit/')
+        response2 = self.authorized_client.get('/posts/1/edit/')
+        response3 = self.guest_client.get('/create/')
+        response4 = self.guest_client.get('/posts/1/edit/')
         self.assertEqual(response.status_code, HTTPStatus.OK)
+        self.assertEqual(response2.status_code, HTTPStatus.OK)
+        self.assertEqual(response3.status_code, HTTPStatus.FOUND)
+        self.assertEqual(response4.status_code, HTTPStatus.FOUND)
 
     def test_correct_template(self):
         """URL-адрес использует соответствующий шаблон."""
