@@ -20,14 +20,16 @@ def get_page_context(queryset, request):
 
 
 def index(request):
-    """Здесь код запроса к модели главной страницы и создание словаря контекста"""
+    """Здесь код запроса к модели главной
+    страницы и создание словаря контекста"""
     template = 'posts/index.html'
     context = get_page_context(Post.objects.all(), request)
     return render(request, template, context)
 
 
 def group_posts(request, slug):
-    """Здесь код запроса к модели страницы постов группы и создание словаря контекста"""
+    """Здесь код запроса к модели страницы
+    постов группы и создание словаря контекста"""
     template = 'posts/group_list.html'
     group = get_object_or_404(Group, slug=slug)
     posts = group.posts.all().order_by('-pub_date')
@@ -40,7 +42,8 @@ def group_posts(request, slug):
 
 
 def profile(request, username):
-    """Здесь код запроса к модели страницы профайла и создание словаря контекста"""
+    """Здесь код запроса к модели страницы
+    профайла и создание словаря контекста"""
     user = get_object_or_404(User, username=username)
     context = {
         'username': user,
@@ -50,7 +53,8 @@ def profile(request, username):
 
 
 def post_detail(request, post_id):
-    """Здесь код запроса к модели страницы деталей поста и создание словаря контекста"""
+    """Здесь код запроса к модели страницы
+    деталей поста и создание словаря контекста"""
     posts = get_object_or_404(Post, pk=post_id)
     context = {
         'posts': posts,
@@ -60,7 +64,8 @@ def post_detail(request, post_id):
 
 @login_required
 def post_create(request):
-    """Здесь код запроса к модели страницы редактирования поста и создание словаря контекста"""
+    """Здесь код запроса к модели страницы
+    редактирования поста и создание словаря контекста"""
     form = PostForm(request.POST or None)
     if form.is_valid():
         post = form.save(commit=False)
@@ -77,7 +82,8 @@ def post_create(request):
 
 @login_required
 def post_edit(request, post_id):
-    """Здесь код запроса к модели страницы создания поста и создание словаря контекста"""
+    """Здесь код запроса к модели страницы
+    создания поста и создание словаря контекста"""
     post = get_object_or_404(Post, id=post_id)
     is_edit = True
     if request.user != post.author:
